@@ -11,3 +11,8 @@ bin/
 
 # Local test data
 .test-data/
+
+# Logo kit: only logo/final and the kit's README are published; the design working files stay on disk, out of Git
+logo/*
+!logo/final/
+!logo/README.md

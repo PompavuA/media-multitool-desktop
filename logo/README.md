@@ -2,6 +2,8 @@
 
 **Idea:** the phone logo's download sign (chevron, baseline pill and top slot) on a laptop screen, with the base set apart like the pill. It's a sibling of the phone logo (`../final/`), so the two apps read as one family.
 
+> **In this repository:** only `final/` (the finished logos) and this README are published. The design working files (`explore/` concept sheets, `renders/`, `slides/`, `presentation.html`, `preview.html`, and the generator `build_kit.py` with `board-spec.json`) are kept out of Git on purpose, so references to them below point to files that live only in the author's copy of the kit. `build_kit.py` also needs the phone kit's glyph code (`../build_kit.py`).
+
 ## Files (`final/`)
 
 | Use | File |
