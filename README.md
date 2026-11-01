@@ -9,6 +9,17 @@
 
 A Windows desktop app for saving videos, audio and GIFs from [thousands of sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md), built on [yt-dlp](https://github.com/yt-dlp/yt-dlp). Dark by default, with a light theme.
 
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/download.png" alt="The Download screen with a video loaded: format menus on the left, a summary and the Download button on the right" width="860">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/queue.png" alt="The Queue screen with a finished download in the history" width="425">
+  <img src="docs/screenshots/settings.png" alt="The Settings screen with the day and night switch" width="425">
+</p>
+
 ## What it does
 
 - **Video, Audio or GIF** from a link, with the real choices that link offers: resolution (with file size), codec, container, frame rate, audio format and bitrate, GIF width, frame rate and loop.
