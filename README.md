@@ -28,7 +28,9 @@ A Windows desktop app for saving videos, audio and GIFs from [thousands of sites
   <sub>Settings, with the day and night switch.</sub>
 </p>
 
-https://github.com/user-attachments/assets/e4a7b647-71d7-4dca-9f3c-e7e01cf767d1
+
+https://github.com/user-attachments/assets/1d71e69f-5829-4902-98d6-cfc343f99f4f
+
 
 <p align="center"><sub>The day and night switch turns the whole app from dark to light and back.</sub></p>
 
