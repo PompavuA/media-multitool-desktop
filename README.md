@@ -54,16 +54,15 @@ You need the same as above. Then:
 build.bat
 ```
 
-That is the whole build; it takes under a minute. It installs the build tools into `.venv`, runs [PyInstaller](https://pyinstaller.org), and leaves two things in `dist\`:
+That is the whole build; it takes under a minute. It installs the build tools into `.venv`, runs [PyInstaller](https://pyinstaller.org), and leaves the app in `dist\`:
 
-| Output | What it is |
-|---|---|
-| `dist\Media MultiTool Desktop\Media MultiTool Desktop.exe` | The app. Keep it inside its folder: the files next to it are part of the app. About 23 MB. |
-| `dist\Media-MultiTool-Desktop-windows.zip` | That folder zipped, to share. About 12 MB. |
+`dist\Media MultiTool Desktop\Media MultiTool Desktop.exe`
 
-To use it, unzip anywhere and double-click the exe. **Do not copy the exe out of its folder on its own: it needs the files beside it and will not start without them.** To move the app, move the whole `Media MultiTool Desktop` folder (make a shortcut to the exe if you want one on the desktop). There is no installer. Besides the app's data folder (below), the only thing it writes is one small per-user Windows entry that gives its notifications the app's name and icon. Add `nopause` (`build.bat nopause`) to close the window when it finishes.
+The whole `Media MultiTool Desktop` folder is the app (about 23 MB). Keep the exe inside it: the files next to it are part of the app.
 
-The exe is **not** committed to the repository; `dist\` and `build\` are ignored by Git. Attach the zip to a GitHub release instead.
+To use it, double-click the exe. **Do not copy the exe out of its folder on its own: it needs the files beside it and will not start without them.** To move the app, or to run it on another PC, copy the whole `Media MultiTool Desktop` folder (zip it first if you like; make a shortcut to the exe if you want one on the desktop). There is no installer. Besides the app's data folder (below), the only thing it writes is one small per-user Windows entry that gives its notifications the app's name and icon. Add `nopause` (`build.bat nopause`) to close the window when it finishes.
+
+The exe is **not** committed to the repository; `dist\` and `build\` are ignored by Git. To publish a build, zip the folder yourself and attach it to a GitHub release.
 
 ## First run: the tools it needs
 

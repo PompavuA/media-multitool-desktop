@@ -1,7 +1,6 @@
 @echo off
 rem Builds the Windows app with PyInstaller:
 rem   dist\Media MultiTool Desktop\Media MultiTool Desktop.exe     (the app, with everything it needs next to it)
-rem   dist\Media-MultiTool-Desktop-windows.zip                     (that folder zipped, to share)
 rem yt-dlp, ffmpeg and Deno are NOT bundled: the app offers to download them on first run, so the build stays small
 rem and always gets the current yt-dlp.
 rem   build.bat            build, then wait for a key press
@@ -16,12 +15,10 @@ if not exist ".venv\Scripts\python.exe" (
 ".venv\Scripts\python.exe" -m PyInstaller --noconfirm --clean --windowed --name "%NAME%" ^
   --icon "%~dp0logo\final\mmd-app-icon.ico" --add-data "%~dp0ui;ui" --collect-all webview ^
   --distpath "%~dp0dist" --workpath "%~dp0build" --specpath "%~dp0build" "%~dp0src\app.py" || goto :fail
-powershell -NoProfile -Command "Compress-Archive -Path 'dist\%NAME%' -DestinationPath 'dist\Media-MultiTool-Desktop-windows.zip' -Force" || goto :fail
 if exist "%~dp0build" rmdir /s /q "%~dp0build"
 echo.
 echo Done:
 echo   dist\%NAME%\%NAME%.exe
-echo   dist\Media-MultiTool-Desktop-windows.zip
 if /i not "%~1"=="nopause" pause
 exit /b 0
 
