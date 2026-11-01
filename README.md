@@ -35,6 +35,7 @@ A Windows desktop app for saving videos, audio and GIFs from [thousands of sites
 - **A queue that runs several downloads at the same time** (1 to 6), with history, Show in Explorer, Open link again and Delete (to the Recycle Bin).
 - **Settings**: save folders, subtitle defaults, speed limit, retries, proxy, IPv4, Stable or Nightly yt-dlp, and the day/night switch.
 - **Info**: tool versions, *Update now*, and a searchable list of every supported site.
+- **New versions**: when a newer release is published on GitHub, a small card says so, with a button to the release page. Switch it off in Settings ("Check for new versions").
 
 ## Run it from source
 
@@ -98,6 +99,14 @@ The last command serves the UI and the same API over `http://127.0.0.1:5190/` (t
 | `design/mockup.html` | The approved design. `tools/make_index.py` builds `ui/index.html` from it |
 | `logo/` | The full logo kit (see its README). `python tools/sync_logo.py` copies the files the app uses into `ui/img` |
 | `run.bat`, `build.bat` | Run from source; build the exe |
+
+## Releasing a new version
+
+1. Raise `APP_VERSION` in `src/app.py` (for example `1.1.0`).
+2. Run `build.bat`, then zip the `dist\Media MultiTool Desktop` folder.
+3. On GitHub, make a new release whose tag is higher than the one before (for example `v1.1.0`) and attach the zip.
+
+Copies of the app that are older than that release will then show the "new version" card the next time they start. The check asks GitHub for the latest published release once per start, sends nothing else, and ignores drafts and pre-releases. Until a first release exists there is nothing to report.
 
 ## Notes
 

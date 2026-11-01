@@ -8,6 +8,7 @@ import os
 import re
 import sys
 import threading
+import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -141,6 +142,24 @@ class Api:
         return os.path.normpath(res[0]) if res else None
 
     # ---- info page
+    # ---- new versions of this app
+    def check_app_update(self):
+        """A newer release on GitHub that the user hasn't dismissed, or None. Does nothing if the setting is off."""
+        if not self._prefs.get("check_updates"):
+            return None
+        r = engine.check_app_update(APP_VERSION)
+        if r and r["version"] != self._prefs.get("update_dismissed"):
+            return dict(r, current=APP_VERSION)
+        return None
+
+    def dismiss_update(self, version):
+        self._prefs.set("update_dismissed", str(version))
+
+    def open_url(self, url):
+        """Opens a page of this app's own GitHub repository in the browser. Nothing else can be opened from the page."""
+        if str(url).startswith(f"https://github.com/{engine.REPO}"):
+            webbrowser.open(url)
+
     def versions(self):
         return {"yt_dlp": engine.ytdlp_version(), "ffmpeg": engine.ffmpeg_version(), "app": APP_VERSION}
 

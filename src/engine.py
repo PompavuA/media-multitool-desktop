@@ -58,6 +58,32 @@ def cache_dir():
     return data_dir() / "cache"
 
 
+# ---------------------------------------------------------------- new versions of this app
+
+REPO = "PompavuA/media-multitool-desktop"
+
+
+def version_tuple(v):
+    """'v1.2.3' -> (1, 2, 3). Anything after a dash (a pre-release tag) is ignored."""
+    return tuple(int(n) for n in re.findall(r"\d+", str(v).lstrip("vV").split("-")[0]))
+
+
+def check_app_update(current):
+    """Asks GitHub for the latest release of this app. Returns {'version', 'url'} if it is newer than `current`, else None.
+    Any failure (offline, rate limit, no release published yet) just means 'nothing to report'."""
+    req = urllib.request.Request(f"https://api.github.com/repos/{REPO}/releases/latest",
+                                 headers={"User-Agent": "MediaMultiToolDesktop", "Accept": "application/vnd.github+json"})
+    try:
+        with urllib.request.urlopen(req, timeout=8) as r:
+            j = json.load(r)
+        tag = j.get("tag_name") or ""
+        if j.get("draft") or j.get("prerelease") or version_tuple(tag) <= version_tuple(current):
+            return None
+        return {"version": tag.lstrip("vV"), "url": j.get("html_url") or f"https://github.com/{REPO}/releases/latest"}
+    except (OSError, ValueError, AttributeError):
+        return None
+
+
 # ---------------------------------------------------------------- tools
 
 # yt-dlp must be the app's own self-updating copy: one from pip or a package manager can't update itself.

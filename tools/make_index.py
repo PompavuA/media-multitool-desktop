@@ -52,6 +52,16 @@ body { padding: 0; overflow: hidden; }
   backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%);
   -webkit-mask-image: linear-gradient(#000 calc(100% - 14px), transparent); mask-image: linear-gradient(#000 calc(100% - 14px), transparent); }
 .resizing .topbar { background: none; }
+/* "a new version is available" card, bottom right */
+#updnote { position: absolute; right: 20px; bottom: 20px; z-index: 70; width: 330px; padding: 14px; border-radius: 14px; background: var(--menu-bg);
+  backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%); border: 1px solid var(--line2); box-shadow: 0 18px 50px rgba(0,0,0,.45);
+  opacity: 0; transform: translateY(16px); transition: opacity .3s var(--ease), transform .45s var(--ease); }
+#updnote.show { opacity: 1; transform: none; }
+#updnote h4 { font-size: 14px; font-weight: 650; margin: 0 0 3px; }
+#updnote p { font-size: 12.5px; color: var(--muted); line-height: 1.45; margin: 0 0 12px; }
+#updnote .acts { display: flex; gap: 8px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.resizing #updnote { backdrop-filter: none; -webkit-backdrop-filter: none; }
 /* the logo kit: lockup at 200 px or wider, as its rules ask, so the sidebar is a little wider than the mockup's */
 .sidebar { width: 224px; }
 .brand { position: relative; display: block; height: 44px; padding: 0; margin-bottom: 10px; }

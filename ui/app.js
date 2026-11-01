@@ -420,7 +420,7 @@ function viewSettings() {
     ${sec('Appearance')}<div class="card">${row('Dark mode', dayNight(P.dark), 'Starts dark. Flip the switch to move between night and day.')}</div>
     ${sec('Save to')}<div class="card">${dir('Video', 'dir_video')}${dir('Audio', 'dir_audio')}${dir('GIF', 'dir_gif')}</div>
     <div class="note">Opens the normal Windows folder picker. Each kind of file can go anywhere you like.</div>
-    ${sec('Behaviour')}<div class="card">${row('Fill in copied links', tog('clip', P.clip), 'Reads a link from the clipboard when the window comes forward')}${row('Notify when downloads finish', tog('notify', P.notify), 'A Windows notification when the queue is done')}</div>
+    ${sec('Behaviour')}<div class="card">${row('Fill in copied links', tog('clip', P.clip), 'Reads a link from the clipboard when the window comes forward')}${row('Check for new versions', tog('check_updates', P.check_updates), 'Asks GitHub for a newer release when the app starts. Nothing else is sent.')}${row('Notify when downloads finish', tog('notify', P.notify), 'A Windows notification when the queue is done')}</div>
     ${sec('Subtitle defaults')}<div class="card">${row('Language', pop('lang', langName(P.sub_lang)))}${row('Include auto-generated', tog('auto_subs', P.auto_subs))}${row('Embed in video', tog('embed_subs', P.embed_subs))}</div>
     <div class="note">Not embedded = saved as a separate .srt file next to the video.</div>
     ${sec('Downloading')}<div class="card">${row('Simultaneous downloads', step('simul', 1, 6), 'How many downloads run at the same time')}${row('Parallel fragments' + tip('fragments'), step('fragments', 1, 16), 'Speed-up inside one download')}${row('Speed limit', pop('rate', (RATES.find(r => r[0] === P.rate_limit) || RATES[0])[1]))}${row('Retries', step('retries', 0, 30), 'Tries per failed connection')}</div>
@@ -676,6 +676,20 @@ const toggleSidebar = () => { setP('sidebar_collapsed', !P.sidebar_collapsed); a
 $('#sbToggle').addEventListener('click', toggleSidebar);
 addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'b') { e.preventDefault(); toggleSidebar(); } });
 
+/* ---------- a newer version of the app on GitHub ---------- */
+function showUpdate(u) {
+  const n = document.createElement('div'); n.id = 'updnote'; n.setAttribute('role', 'status');
+  n.innerHTML = `<h4>A new version is available</h4><p>Version ${esc(u.version)} is on GitHub. You have ${esc(u.current)}.</p>
+    <div class="acts"><button class="btn primary" data-up="open">View on GitHub</button><button class="btn" data-up="dismiss">Dismiss</button></div>`;
+  n.addEventListener('click', e => {
+    const b = e.target.closest('[data-up]'); if (!b) return;
+    if (b.dataset.up === 'open') api.open_url(u.url); else api.dismiss_update(u.version);
+    n.classList.remove('show'); setTimeout(() => n.remove(), 400);
+  });
+  $('#win').appendChild(n); requestAnimationFrame(() => requestAnimationFrame(() => n.classList.add('show')));
+}
+async function checkUpdate() { try { const u = await api.check_app_update(); if (u && !$('#updnote')) showUpdate(u); } catch (e) { /* offline: nothing to say */ } }
+
 /* ---------- first-run setup ---------- */
 async function startSetup() {
   await api.setup_tools(); S.setup.running = true; render(false);
@@ -695,6 +709,7 @@ async function startSetup() {
     api.versions().then(v => { S.versions = v; fillFoot(); });
     await poll(); setInterval(poll, 600);
     clipFill().catch(() => {});
+    setTimeout(checkUpdate, 3000);
   } catch (e) {   // never leave a blank window: say what went wrong
     $('#main').innerHTML = `<div class="view"><h1>Couldn’t start</h1><div class="note">${esc(e && e.message || e)}</div></div>`;
   }

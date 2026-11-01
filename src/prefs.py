@@ -17,7 +17,7 @@ def defaults():
         "dir_gif": winutil.known_folder("Pictures", winutil.APP_NAME),
         "sub_lang": "en", "auto_subs": True, "embed_subs": True,
         "simul": 3, "fragments": 4, "rate_limit": "", "retries": 10, "proxy": "", "force_ipv4": False,
-        "nightly": False, "dark": True, "notify": True, "clip": True, "sidebar_collapsed": False,
+        "nightly": False, "dark": True, "notify": True, "clip": True, "sidebar_collapsed": False, "check_updates": True, "update_dismissed": "",
         # bookkeeping
         "last_update": 0,
     }
