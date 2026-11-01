@@ -44,7 +44,7 @@ That is the whole build; it takes under a minute. It installs the build tools in
 | `dist\Media MultiTool Desktop\Media MultiTool Desktop.exe` | The app. Keep it inside its folder: the files next to it are part of the app. About 23 MB. |
 | `dist\Media-MultiTool-Desktop-windows.zip` | That folder zipped, to share. About 12 MB. |
 
-To use it, unzip anywhere and double-click the exe. There is no installer. Besides the app's data folder (below), the only thing it writes is one small per-user Windows entry that gives its notifications the app's name and icon. Add `nopause` (`build.bat nopause`) to close the window when it finishes.
+To use it, unzip anywhere and double-click the exe. **Do not copy the exe out of its folder on its own: it needs the files beside it and will not start without them.** To move the app, move the whole `Media MultiTool Desktop` folder (make a shortcut to the exe if you want one on the desktop). There is no installer. Besides the app's data folder (below), the only thing it writes is one small per-user Windows entry that gives its notifications the app's name and icon. Add `nopause` (`build.bat nopause`) to close the window when it finishes.
 
 The exe is **not** committed to the repository; `dist\` and `build\` are ignored by Git. Attach the zip to a GitHub release instead.
 
