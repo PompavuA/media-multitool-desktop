@@ -12,12 +12,18 @@ A Windows desktop app for saving videos, audio and GIFs from [thousands of sites
 ## Screenshots
 
 <p align="center">
-  <img src="docs/screenshots/download.png" alt="The Download screen with a video loaded: format menus on the left, a summary and the Download button on the right" width="860">
+  <img src="docs/screenshots/download.png" alt="The Download screen with a video loaded: format menus and options on the left, a summary and the Download button on the right" width="820"><br>
+  <sub>Pick the exact format, trim, add subtitles or a custom name, and see what you'll get before you download.</sub>
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/queue.png" alt="The Queue screen with a finished download in the history" width="425">
-  <img src="docs/screenshots/settings.png" alt="The Settings screen with the day and night switch" width="425">
+  <img src="docs/screenshots/queue.png" alt="The Queue screen with a finished download in the history" width="820"><br>
+  <sub>The queue and history: several downloads at once, with Show in Explorer, Open link again and Delete.</sub>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/settings.png" alt="The Settings screen with the day and night switch" width="820"><br>
+  <sub>Settings, with the day and night switch.</sub>
 </p>
 
 ## What it does
