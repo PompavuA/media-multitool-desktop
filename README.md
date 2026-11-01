@@ -9,6 +9,8 @@
 
 A Windows desktop app for saving videos, audio and GIFs from [thousands of sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md), built on [yt-dlp](https://github.com/yt-dlp/yt-dlp). Dark by default, with a light theme.
 
+**Free to download, use and change, for non-commercial use. Not for sale.** See [Licence](#licence).
+
 ## Screenshots
 
 <p align="center">
@@ -121,4 +123,21 @@ Plain commits never trigger anything; only a published release does. The app ask
 - Downloading from some sites, YouTube included, may be against their terms of service. Use this for content you are allowed to save, for your own use.
 - Media MultiTool Desktop does not include or modify yt-dlp, ffmpeg or Deno; it downloads and runs them. They have their own licences.
 - Notifications come from "Media MultiTool Desktop" with the app icon. Clicking one opens the finished file, or its folder when there are several.
-- MIT licence, see `LICENSE`.
+- Licence: free for non-commercial use, not for sale; see [Licence](#licence) below.
+
+## Licence
+
+Media MultiTool Desktop is **freeware**. Anyone can download it, use it, pass it on and change it, as long as it stays non-commercial. It is released under the [PolyForm Noncommercial License 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0) (the full text is in [`LICENSE`](LICENSE)). In plain words:
+
+| You may | You may not |
+|---|---|
+| Download it and use it for free, for yourself, a hobby, study, teaching or a charity | **Sell it**, or charge for it, for access to it, or for a copy of it |
+| Copy it and give it to others, unchanged, with the licence and the credit | Put it inside a product or service that is sold, or that makes money from ads, subscriptions or bundled installers |
+| Change it for your own use, and share your changes under these same terms | Use it as part of running a business to earn money |
+| Read the code and learn from it | Take the licence or the credit out, or present a changed copy as the official one |
+
+The name "Media MultiTool Desktop" and its logo are not licensed for use: if you share a changed version, give it its own name and logo. If you want to use it commercially, ask first by opening an issue.
+
+If this summary and `LICENSE` ever disagree, `LICENSE` is what counts. This is a plain-language guide, not legal advice. Versions published before this change, such as the 1.1.0 release, were released under the MIT licence and keep it.
+
+yt-dlp, ffmpeg and Deno are not part of this project: the app only downloads and runs them, and they have their own licences. The libraries bundled in the Windows build are listed with their licences in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).

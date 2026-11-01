@@ -15,6 +15,8 @@ if not exist ".venv\Scripts\python.exe" (
 ".venv\Scripts\python.exe" -m PyInstaller --noconfirm --clean --windowed --name "%NAME%" ^
   --icon "%~dp0logo\final\mmd-app-icon.ico" --add-data "%~dp0ui;ui" --collect-all webview ^
   --distpath "%~dp0dist" --workpath "%~dp0build" --specpath "%~dp0build" "%~dp0src\app.py" || goto :fail
+copy /y "%~dp0LICENSE" "%~dp0dist\%NAME%\LICENSE.txt" >nul
+copy /y "%~dp0THIRD_PARTY_NOTICES.md" "%~dp0dist\%NAME%\THIRD_PARTY_NOTICES.md" >nul
 if exist "%~dp0build" rmdir /s /q "%~dp0build"
 echo.
 echo Done:
