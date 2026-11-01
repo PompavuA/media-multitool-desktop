@@ -1,0 +1,13 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Build output and downloaded tools (yt-dlp, ffmpeg and Deno are fetched at first run / build time)
+build/
+dist/
+*.spec
+bin/
+
+# Local test data
+.test-data/
