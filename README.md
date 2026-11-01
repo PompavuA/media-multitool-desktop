@@ -1,4 +1,9 @@
-<p align="center"><img src="logo/final/mmd-horizontal.svg" alt="Media MultiTool Desktop" width="420"></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="logo/final/mmd-horizontal-white.svg">
+    <img src="logo/final/mmd-horizontal-black.svg" alt="Media MultiTool Desktop" width="420">
+  </picture>
+</p>
 
 # Media MultiTool Desktop
 
