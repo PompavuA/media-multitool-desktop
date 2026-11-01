@@ -28,6 +28,11 @@ A Windows desktop app for saving videos, audio and GIFs from [thousands of sites
   <sub>Settings, with the day and night switch.</sub>
 </p>
 
+<p align="center">
+  <video src="docs/screenshots/dark-light-mode.mp4" width="820" controls muted loop playsinline></video><br>
+  <sub>The day and night switch turns the whole app from dark to light and back.</sub>
+</p>
+
 ## What it does
 
 - **Video, Audio or GIF** from a link, with the real choices that link offers: resolution (with file size), codec, container, frame rate, audio format and bitrate, GIF width, frame rate and loop.
