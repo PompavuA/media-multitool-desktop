@@ -17,7 +17,7 @@ import jobs
 import prefs as prefs_mod
 import winutil
 
-APP_VERSION = "1.0.0"
+APP_VERSION = "1.1.0"
 UI = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent.parent)) / "ui"
 
 

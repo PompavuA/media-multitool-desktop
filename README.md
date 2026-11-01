@@ -114,7 +114,7 @@ Which number you raise decides whether people are told:
 | New feature | middle number: `1.0.1` to `1.1.0` | shown |
 | Big change | first number: `1.1.0` to `2.0.0` | shown |
 
-Plain commits never trigger anything; only a published release does. The app asks GitHub for the latest release once per start, sends nothing else, and ignores drafts and pre-releases. Until a first release exists there is nothing to report.
+Plain commits never trigger anything; only a published release does. The app asks GitHub for the latest release once per start, sends nothing else, and ignores drafts and pre-releases.
 
 ## Notes
 
