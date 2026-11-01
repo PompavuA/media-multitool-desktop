@@ -68,8 +68,14 @@ def version_tuple(v):
     return tuple(int(n) for n in re.findall(r"\d+", str(v).lstrip("vV").split("-")[0]))
 
 
+def feature_level(v):
+    """The part of a version that means 'new features': major and minor (1.2.3 -> (1, 2)). The last number is for small fixes."""
+    return (version_tuple(v) + (0, 0))[:2]
+
+
 def check_app_update(current):
-    """Asks GitHub for the latest release of this app. Returns {'version', 'url'} if it is newer than `current`, else None.
+    """Asks GitHub for the latest release of this app. Returns {'version', 'url'} only if it brings new features, that is,
+    its major or minor number is higher than `current`'s. A small-fix release (1.0.0 -> 1.0.1) stays silent.
     Any failure (offline, rate limit, no release published yet) just means 'nothing to report'."""
     req = urllib.request.Request(f"https://api.github.com/repos/{REPO}/releases/latest",
                                  headers={"User-Agent": "MediaMultiToolDesktop", "Accept": "application/vnd.github+json"})
@@ -77,7 +83,7 @@ def check_app_update(current):
         with urllib.request.urlopen(req, timeout=8) as r:
             j = json.load(r)
         tag = j.get("tag_name") or ""
-        if j.get("draft") or j.get("prerelease") or version_tuple(tag) <= version_tuple(current):
+        if j.get("draft") or j.get("prerelease") or feature_level(tag) <= feature_level(current):
             return None
         return {"version": tag.lstrip("vV"), "url": j.get("html_url") or f"https://github.com/{REPO}/releases/latest"}
     except (OSError, ValueError, AttributeError):

@@ -35,7 +35,7 @@ A Windows desktop app for saving videos, audio and GIFs from [thousands of sites
 - **A queue that runs several downloads at the same time** (1 to 6), with history, Show in Explorer, Open link again and Delete (to the Recycle Bin).
 - **Settings**: save folders, subtitle defaults, speed limit, retries, proxy, IPv4, Stable or Nightly yt-dlp, and the day/night switch.
 - **Info**: tool versions, *Update now*, and a searchable list of every supported site.
-- **New versions**: when a newer release is published on GitHub, a small card says so, with a button to the release page. Switch it off in Settings ("Check for new versions").
+- **New versions**: when a release with new features is published on GitHub, a small card says so, with a button to the release page. Small fixes do not trigger it. Switch it off in Settings ("Check for new versions").
 
 ## Run it from source
 
@@ -102,11 +102,19 @@ The last command serves the UI and the same API over `http://127.0.0.1:5190/` (t
 
 ## Releasing a new version
 
-1. Raise `APP_VERSION` in `src/app.py` (for example `1.1.0`).
+1. Raise `APP_VERSION` in `src/app.py`.
 2. Run `build.bat`, then zip the `dist\Media MultiTool Desktop` folder.
-3. On GitHub, make a new release whose tag is higher than the one before (for example `v1.1.0`) and attach the zip.
+3. On GitHub, make a new release whose tag matches (for example `v1.1.0`) and attach the zip.
 
-Copies of the app that are older than that release will then show the "new version" card the next time they start. The check asks GitHub for the latest published release once per start, sends nothing else, and ignores drafts and pre-releases. Until a first release exists there is nothing to report.
+Which number you raise decides whether people are told:
+
+| Change | Version | The "new version" card |
+|---|---|---|
+| Small fix, build or README change | last number: `1.0.0` to `1.0.1` | not shown (the release is still on GitHub) |
+| New feature | middle number: `1.0.1` to `1.1.0` | shown |
+| Big change | first number: `1.1.0` to `2.0.0` | shown |
+
+Plain commits never trigger anything; only a published release does. The app asks GitHub for the latest release once per start, sends nothing else, and ignores drafts and pre-releases. Until a first release exists there is nothing to report.
 
 ## Notes
 

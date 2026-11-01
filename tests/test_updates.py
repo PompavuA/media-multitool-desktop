@@ -51,6 +51,13 @@ class CheckOnGitHub(unittest.TestCase):
         urllib.request.urlopen = answer({"tag_name": "v1.1.0", "html_url": f"https://github.com/{engine.REPO}/releases/tag/v1.1.0"})
         self.assertEqual({"version": "1.1.0", "url": f"https://github.com/{engine.REPO}/releases/tag/v1.1.0"}, engine.check_app_update("1.0.0"))
 
+    def test_small_fix_releases_stay_silent_but_feature_releases_show(self):
+        for tag, shown in (("v1.0.1", False), ("v1.0.9", False), ("v1.1.0", True), ("v1.2.3", True), ("v2.0.0", True), ("v2", True)):
+            urllib.request.urlopen = answer({"tag_name": tag})
+            self.assertEqual(shown, engine.check_app_update("1.0.0") is not None, tag)
+        urllib.request.urlopen = answer({"tag_name": "v1.1.5"})
+        self.assertIsNone(engine.check_app_update("1.1.0"))      # already on 1.1: a later 1.1.x is only a small fix
+
     def test_same_older_draft_and_prerelease_are_ignored(self):
         for payload in ({"tag_name": "v1.0.0"}, {"tag_name": "v0.9.0"}, {"tag_name": "v2.0.0", "draft": True}, {"tag_name": "v2.0.0", "prerelease": True}, {}):
             urllib.request.urlopen = answer(payload)
