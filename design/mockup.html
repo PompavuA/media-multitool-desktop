@@ -621,7 +621,7 @@ function loadedBody() {
     } else if (S.mode === 'Audio') rows += row('Format', pop('afmt', S.afmt)) + row('Bitrate', `<button class="pop" data-pop="br" ${S.afmt === 'Original' ? 'disabled' : ''} aria-haspopup="menu" aria-expanded="false"><span>${S.afmt === 'Original' ? 'Original' : S.br + ' kbps'}</span>${ic('updown')}</button>`);
     else rows += row('Width', pop('gw', S.gw + ' px')) + row('Frame rate', pop('gfps', S.gfps + ' fps')) + row('Loop', pop('gloop', S.gloop));
     const secCard = S.mode === 'GIF' ? `${sec('Section')}<div class="card"><div class="tfields" style="padding-top:14px">${tfields()}</div><div class="note" style="padding:0 16px 12px">${sectionHint()}</div></div>` : '';
-    fmt = secCard + sec(S.mode === 'Video' ? 'Format' : S.mode) + `<div class="card">${rows}</div>`;
+    fmt = sec(S.mode === 'Video' ? 'Format' : S.mode) + `<div class="card">${rows}</div>` + secCard;
     if (S.mode === 'Audio') fmt += `<div class="note">Original = the site's own audio (Opus 160 kbps here), no re-encoding. Bitrate applies to M4A, MP3 and Opus.</div>`;
     if (isPL()) fmt += sec('Playlist') + `<div class="card">${row('Download', pop('plmode', S.plRange ? 'Range…' : `All ${m.count}`))}
       <div class="xp ${S.plRange ? 'open' : ''}"><div><div class="inner tfields"><span>Items</span><input class="field c" data-in="rFrom" value="${esc(S.rFrom)}" inputmode="numeric" aria-label="First item"><span>to</span><input class="field c" data-in="rTo" value="${esc(S.rTo)}" placeholder="end" inputmode="numeric" aria-label="Last item"></div></div></div>
